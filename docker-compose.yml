@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: vue-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - node_modules:/app/node_modules
+    working_dir: /app
+    command: ["npm", "run", "dev", "--", "--host"]
+    networks:
+      - weatherapp_network
+
+  nginx:
+    image: nginx:stable
+    container_name: taskpilot-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+    networks:
+      - weatherapp_network
+
+volumes:
+  node_modules:
+
+networks:
+  weatherapp_network:
+    driver: bridge
