@@ -9,8 +9,27 @@
                 You are currently previewing this city, click the "+" icon to start tracking this city.
             </p>
         </div>
-        
+
         <!-- Weather Overview -->
+        <div 
+            class="flex flex-col items-center text-white py-12"
+        >
+            <h1 class="text-4xl mb-2">{{ route.params.city }}</h1>
+            <p class="text-sm mb-12">
+                {{ 
+                    new Date(weatherData.currentTime).toLocaleString('en-US', {
+                    weekday: 'short',
+                    day: '2-digit',
+                    month: 'long',
+                    }) 
+                }}
+                {{ 
+                    new Date(weatherData.currentTime).toLocaleString('en-US', {
+                    timeStyle: 'short',
+                    }) 
+                }}
+            </p>
+        </div>
     </div>
 </template>
 
