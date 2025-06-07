@@ -74,6 +74,13 @@
                                 })
                             }}
                         </p>
+                        <img 
+                            class="w-auto h-[50px] object-cover"  
+                            :src="
+                                `https://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`
+                            "
+                            alt=""
+                        /> 
                     </div>
                 </div>
             </div>
